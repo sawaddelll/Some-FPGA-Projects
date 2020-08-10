@@ -108,11 +108,12 @@ module alustim();
 		
 		A = 64'hFFFFFFFFFFFFFFFF; B = 64'hFFFFFFFFFFFFFFFF;  // -1 + -1 = -2
 		#(delay);
-		assert(result == 64'h111111111111111E && carry_out == 1 && overflow == 0 && negative == 1 && zero == 0);
+		assert(result == 64'hFFFFFFFFFFFFFFFE && carry_out == 1 && overflow == 0 && negative == 1 && zero == 0);
 		
 		A = 64'h7FFFFFFFFFFFFFFF; B = 64'h7FFFFFFFFFFFFFFF;  // overflow
+		       
 		#(delay);
-		assert(result == 64'h111111111111111E && carry_out == 0 && overflow == 1 && negative == 0 && zero == 0);
+		assert(result == 64'hFFFFFFFFFFFFFFFE && carry_out == 0 && overflow == 1 && negative == 1 && zero == 0);
 		
 		for (i=0; i<10; i++) begin
 			A = $random(); B = $random();
